@@ -1,7 +1,11 @@
 <template>
   <div class="spider-puppeteer-wrapper">
     <div class="content">
-      <el-input class="render-url" v-model="url" @keyup.enter.native="renderUrl"></el-input>
+      <el-input
+        class="render-url"
+        v-model="url"
+        @keyup.enter.native="renderUrl"
+      ></el-input>
       <el-button type="primary" size="small" @click="renderUrl">渲染</el-button>
     </div>
   </div>
@@ -12,17 +16,16 @@ export default {
   name: 'Index',
   data() {
     return {
-      url: ''
-    }
+      url: '',
+    };
   },
   methods: {
     renderUrl() {
-      const re = /^https?::\/\//
       if (!this.url) return this.$message.error('请填写url');
       location.href = `/render?url=${this.url}`;
-    }
+    },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -35,7 +38,7 @@ export default {
     align-items: center;
     justify-content: center;
     position: absolute;
-    top:50%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     .render-url {

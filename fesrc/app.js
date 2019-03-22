@@ -2,7 +2,7 @@ import Vue from 'vue';
 Vue.config.productionTip = false;
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
-import Home from './home'
+import Home from './home';
 
 Vue.use(ElementUI);
 
@@ -10,7 +10,7 @@ Vue.use(ElementUI);
 new Vue({
   el: '#app',
   data: {
-    message: 'hello world'
+    message: 'hello world',
   },
-  render: h => h(Home)
+  render: h => h(Home),
 });

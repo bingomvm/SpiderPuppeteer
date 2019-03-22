@@ -16,7 +16,7 @@
     "type": "file",
     "file": {
       "timeout": 86400000,
-      "cachePath": "/Users/liguangzhao/Documents/myProject/thinjs/runtime/cache",
+      "cachePath": "/Users/liguangzhao/Documents/myProject/SpiderPuppet/runtime/cache",
       "pathDepth": 1,
       "gcInterval": 86400000
     }
@@ -42,13 +42,13 @@
       "cookie": {
         "name": "thinkjs"
       },
-      "sessionPath": "/Users/liguangzhao/Documents/myProject/thinjs/runtime/session"
+      "sessionPath": "/Users/liguangzhao/Documents/myProject/SpiderPuppet/runtime/session"
     }
   },
   "view": {
     "type": "nunjucks",
     "nunjucks": {
-      "viewPath": "/Users/liguangzhao/Documents/myProject/thinjs/view",
+      "viewPath": "/Users/liguangzhao/Documents/myProject/SpiderPuppet/view",
       "sep": "_",
       "extname": ".html",
       "options": {
@@ -66,14 +66,14 @@
       "backups": 10,
       "absolute": true,
       "maxLogSize": 51200,
-      "filename": "/Users/liguangzhao/Documents/myProject/thinjs/logs/app.log"
+      "filename": "/Users/liguangzhao/Documents/myProject/SpiderPuppet/logs/app.log"
     },
     "dateFile": {
       "level": "ALL",
       "absolute": true,
       "pattern": "-yyyy-MM-dd",
       "alwaysIncludePattern": true,
-      "filename": "/Users/liguangzhao/Documents/myProject/thinjs/logs/app.log"
+      "filename": "/Users/liguangzhao/Documents/myProject/SpiderPuppet/logs/app.log"
     }
   }
 }
