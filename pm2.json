@@ -1,0 +1,15 @@
+{
+  "apps": [{
+    "name": "thinjs",
+    "script": "production.js",
+    "cwd": "/Users/liguangzhao/Documents/myProject/thinjs",
+    "exec_mode": "fork",
+    "max_memory_restart": "1G",
+    "autorestart": true,
+    "node_args": [],
+    "args": [],
+    "env": {
+      
+    }
+  }]
+}
