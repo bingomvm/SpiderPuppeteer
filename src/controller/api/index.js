@@ -5,8 +5,8 @@ module.exports = class extends Base {
     const cookies = this.header('cookie');
     const spider = think.service('spider', {
       cookies,
-      url
-    })
+      url,
+    });
     const result = await spider.render();
     this.success(result);
   }

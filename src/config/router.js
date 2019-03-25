@@ -1,3 +1,1 @@
-module.exports = [
-    ['/render', 'index/render']
-];
+module.exports = [['/render', 'index/render']];

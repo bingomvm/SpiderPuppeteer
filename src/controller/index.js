@@ -4,17 +4,17 @@ module.exports = class extends Base {
     return this.display();
   }
   async renderAction() {
-    const url = this.get('url')
+    const url = this.get('url');
     try {
       const cookies = this.header('cookie');
       const spider = think.service('spider', {
         cookies,
-        url
-      })
+        url,
+      });
       const result = await spider.render();
       this.assign('html', result.html);
     } catch (error) {
-      return this.fail(404)
+      return this.fail(404);
     }
     return this.display();
   }

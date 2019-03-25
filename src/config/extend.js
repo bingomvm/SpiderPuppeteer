@@ -7,5 +7,5 @@ module.exports = [
   view, // make application support view
   model(think.app),
   cache,
-  session
+  session,
 ];
