@@ -19,18 +19,19 @@ module.exports = class extends think.Service {
     if (this.brower) return this.brower;
     this.brower = await puppeteer.launch({
       args: ['--no-sandbox'],
-      headless: false,
+      headless: true,
     });
     return this.brower;
   }
   async render() {
-    const brower = await this.launch({
-      headless: false,
-      args: ['--no-sandbox'],
-    });
+    const brower = await this.launch();
     const page = await brower.newPage();
-    const cookies = this.generatorCookie();
-    await page.setCookie(...cookies);
+    if (this.cookie) {
+      const cookies = this.generatorCookie();
+      if (cookies.length) {
+        await page.setCookie(...cookies);
+      }
+    }
     await page.goto(this.url);
     const html = await page.content();
     this.close();
@@ -43,6 +44,7 @@ module.exports = class extends think.Service {
     const splitCookies = this.cookie.split(';');
     splitCookies.forEach(cookieStr => {
       const cookie = cookieStr.replace(/\s/gi, '').split('=');
+      if (!cookie[0] || !cookie[1]) return;
       cookieArr.push({
         name: cookie[0],
         value: cookie[1],

@@ -10,7 +10,8 @@
     "build": "cross-env NODE_ENV=production node fesrc/build/build.js",
     "test": "THINK_UNIT_TEST=1 nyc ava test/ && nyc report --reporter=html",
     "lint": "eslint src/",
-    "lint-fix": "eslint --fix src/"
+    "cmd": "sh ./docker/cmd.sh",
+    "docker": "npm run cmd"
   },
   "dependencies": {
     "autoprefixer": "^9.0.1",

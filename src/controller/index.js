@@ -12,8 +12,10 @@ module.exports = class extends Base {
         url,
       });
       const result = await spider.render();
+      think.logger.error('test');
       this.assign('html', result.html);
     } catch (error) {
+      console.log('-->', error);
       return this.fail(404);
     }
     return this.display();

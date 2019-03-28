@@ -1,4 +1,5 @@
 // production config, it will load in production enviroment
 module.exports = {
-  workers: 0,
+  host: '0.0.0.0',
+  workers: 1,
 };
