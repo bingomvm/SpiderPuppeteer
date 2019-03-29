@@ -39,3 +39,20 @@ production
 npm run build
 ```
 
+## Start with docker
+
+build images
+
+```
+npm run docker
+```
+
+run container
+
+```
+docker run -p your port:8362 IMAGEID
+
+```
+
+
+
