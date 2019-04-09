@@ -1,4 +1,3 @@
 node_modules
 runtime
 docker/cmd.sh
-docker-entrypoint.sh

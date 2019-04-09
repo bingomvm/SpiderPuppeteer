@@ -1,5 +1,5 @@
 module.exports = class extends think.Logic {
-  indexAction() {
+  renderAction() {
     this.rule = {
       url: {
         required: true,

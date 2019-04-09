@@ -11,7 +11,8 @@
     "test": "THINK_UNIT_TEST=1 nyc ava test/ && nyc report --reporter=html",
     "lint": "eslint src/",
     "cmd": "sh ./docker/docker.sh",
-    "docker": "npm run cmd"
+    "docker": "npm run cmd",
+    "sync-docker": "sh ./docker/cmd.sh"
   },
   "dependencies": {
     "autoprefixer": "^9.0.1",

@@ -1,6 +1,6 @@
 const Base = require('../base.js');
 module.exports = class extends Base {
-  async indexAction() {
+  async renderAction() {
     const url = this.get('url');
     const cookies = this.header('cookie');
     const spider = think.service('spider', {

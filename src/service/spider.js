@@ -8,6 +8,9 @@ module.exports = class extends think.Service {
     this.cookie = cookies;
     this.host = host;
     this.url = url;
+    think.logger.info(
+      `url->${this.url};cookies->:${this.cookie};host->${this.host}`
+    );
   }
   timer() {
     const now = Date.now();
@@ -28,30 +31,33 @@ module.exports = class extends think.Service {
     const page = await brower.newPage();
     if (this.cookie) {
       const cookies = this.generatorCookie();
-      if (cookies.length) {
-        await page.setCookie(...cookies);
-      }
+      cookies.length && (await page.setCookie(...cookies));
     }
     await page.goto(this.url);
-    const html = await page.content();
+    const content = await page.content();
     this.close();
-    return { html };
+    return { content };
   }
   generatorCookie() {
     const cookieArr = [];
-    const urlParse = new URL(this.url);
-    const domain = urlParse.host;
-    const splitCookies = this.cookie.split(';');
-    splitCookies.forEach(cookieStr => {
-      const cookie = cookieStr.replace(/\s/gi, '').split('=');
-      if (!cookie[0] || !cookie[1]) return;
-      cookieArr.push({
-        name: cookie[0],
-        value: cookie[1],
-        domain,
+    try {
+      const urlParse = new URL(this.url);
+      const domain = urlParse.host;
+      const splitCookies = this.cookie.split(';');
+      splitCookies.forEach(cookieStr => {
+        const cookie = cookieStr.replace(/\s/gi, '').split('=');
+        if (!cookie[0] || !cookie[1]) return;
+        cookieArr.push({
+          name: cookie[0],
+          value: cookie[1],
+          domain,
+        });
       });
-    });
-    return cookieArr;
+      return cookieArr;
+    } catch (error) {
+      think.logger.error(error);
+      return [];
+    }
   }
   close() {
     this.brower.close();
