@@ -13,7 +13,7 @@ const config = {
     urlPrefix: '/static/js/',
     proxy: {
       '*': {
-        target: `http://127.0.0.1:8360`,
+        target: `http://127.0.0.1:8362`,
         changeOrigin: true,
       },
     },

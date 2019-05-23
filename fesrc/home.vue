@@ -1,5 +1,8 @@
 <template>
   <div class="spider-puppeteer-wrapper">
+    <div class="logo">
+      <img src="https://p0.ssl.qhimg.com/t0182e16f529351fc2e.png" alt="" />
+    </div>
     <div class="content">
       <el-input
         class="render-url"
@@ -29,18 +32,29 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
 .spider-puppeteer-wrapper {
-  min-height: 100vh;
-  min-width: 1220px;
+  .logo {
+    overflow: hidden;
+    img {
+      width: 150px;
+      display: block;
+      margin: 100px auto 0;
+    }
+  }
   .content {
-    min-height: 100vh;
+    margin: 70px 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: absolute;
+    /* position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); */
     .render-url {
       width: 500px;
     }

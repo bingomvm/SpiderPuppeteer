@@ -40,9 +40,7 @@ const devConfig = merge(base, {
     ]),
     new friendlyErrorsWebpackPlugin({
       compilationSuccessInfo: {
-        messages: [
-          `服务启动成功，输入url后点击渲染产看效果`,
-        ],
+        messages: [`服务启动成功，输入url后点击渲染产看效果`],
       },
     }),
   ],

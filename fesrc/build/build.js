@@ -12,10 +12,7 @@ const base = require('./webpack.config');
 const prodConfig = webpackMerge(base, {
   output: {
     path: config.assetsRoot,
-    chunkFilename: path.posix.join(
-      config.staticPath,
-      '[name].js'
-    ),
+    chunkFilename: path.posix.join(config.staticPath, '[name].js'),
   },
   plugins: [
     new webpack.DefinePlugin({
