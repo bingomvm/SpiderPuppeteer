@@ -2,7 +2,7 @@
   "name": "thinjs",
   "description": "a demo thinjs project",
   "version": "1.0.0",
-  "author": "liguangzhao <liguangzhao@360.cn>",
+  "author": "liguangzhao",
   "scripts": {
     "start": "node development.js",
     "lgz-dev": "npm run dev",
@@ -112,7 +112,7 @@
     "metadata": {
       "name": "thinjs",
       "description": "a demo thinjs project",
-      "author": "liguangzhao <liguangzhao@360.cn>",
+      "author": "liguangzhao",
       "babel": false
     },
     "projectName": "thinjs",
