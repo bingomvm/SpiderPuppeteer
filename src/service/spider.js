@@ -2,13 +2,14 @@ const puppeteer = require('puppeteer');
 const { URL } = require('url');
 const path = require('path');
 module.exports = class extends think.Service {
-  constructor({ cookies, host, url }) {
+  constructor({ cookies, host, url, options }) {
     super();
     this.brower = null;
     this.page = null;
     this.cookie = cookies;
     this.host = host;
     this.url = url;
+    this.options = options;
     think.logger.info(
       `url->${this.url};cookies->:${this.cookie};host->${this.host}`
     );
@@ -27,9 +28,17 @@ module.exports = class extends think.Service {
   }
   async launch() {
     if (this.brower) return this.brower;
+    const windowsize = this.options.windowsize;
+    const wh = windowsize ? windowsize : '1920,1080';
+    const pagesize = this.options.pagesize;
+    console.log(wh, pagesize);
+    const [pageWidth, pageHeight] = pagesize
+      ? pagesize.split(',').map(item => parseInt(item))
+      : [];
+    think.logger.info(`windowsize:${wh}; pagesize: ${pagesize || '1920,1080'}`);
     this.brower = await puppeteer.launch({
-      args: ['--no-sandbox', '--window-size=1920,1080'],
-      defaultViewport: { width: 1920, height: 1042 },
+      args: ['--no-sandbox', `--window-size=${wh}`],
+      defaultViewport: { width: pageWidth || 1920, height: pageHeight || 1080 },
       headless: true,
     });
     return this.brower;
@@ -68,6 +77,10 @@ module.exports = class extends think.Service {
   }
   async screenshot(params) {
     const page = await this.initPage();
+    if (this.cookie) {
+      const cookies = this.generatorCookie();
+      cookies.length && (await page.setCookie(...cookies));
+    }
     await page.goto(this.url);
     think.logger.info('screen params:', params);
     const buffer = await page.screenshot({
