@@ -17,9 +17,8 @@ module.exports = class extends Base {
     const url = this.get('url');
     const fullpage = this.get('fullpage');
     const windowsize = this.get('windowsize');
-    const pagesize = this.get('pagesize');
+    const pagesize = this.get('viewport');
     const cookies = this.header('cookie');
-    console.log(windowsize, pagesize);
     try {
       const spider = think.service('spider', {
         url,
