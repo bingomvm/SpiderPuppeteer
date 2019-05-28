@@ -154,5 +154,5 @@ docker run -t -p yourport:8362 IMAGEID
 docker pull bingomvm/spider-puppeteer
 
 // 运行镜像
-docker run -t -p yourport:8360 bingomvm/spider-puppeteer
+docker run -t -p yourport:8362 bingomvm/spider-puppeteer
 ```
