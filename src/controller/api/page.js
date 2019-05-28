@@ -18,6 +18,7 @@ module.exports = class extends Base {
     const fullpage = this.get('fullpage');
     const windowsize = this.get('windowsize');
     const pagesize = this.get('viewport');
+    const waitfor = this.get('waitfor');
     const cookies = this.header('cookie');
     try {
       const spider = think.service('spider', {
@@ -26,6 +27,7 @@ module.exports = class extends Base {
         options: {
           windowsize: windowsize,
           pagesize,
+          waitfor,
         },
       });
       await spider.screenshot({

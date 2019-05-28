@@ -81,8 +81,15 @@ module.exports = class extends think.Service {
       const cookies = this.generatorCookie();
       cookies.length && (await page.setCookie(...cookies));
     }
-    await page.goto(this.url);
+    await page.goto(this.url, { waitUntil: 'networkidle0' });
     think.logger.info('screen params:', params);
+    const waitfor = this.options.waitfor;
+    console.log(this.options, isNaN(waitfor));
+    if (waitfor && !isNaN(waitfor)) {
+      await page.waitFor(parseInt(this.options.waitfor));
+    } else if (waitfor) {
+      await page.waitFor(this.options.waitfor);
+    }
     const buffer = await page.screenshot({
       path: path.join(think.ROOT_PATH, './runtime/screenshot.png'),
       ...params,
