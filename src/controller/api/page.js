@@ -1,4 +1,7 @@
 const Base = require('../base.js');
+const path = require('path');
+const fs = require('fs');
+const unlink = think.promisify(fs.unlink, fs);
 module.exports = class extends Base {
   async renderAction() {
     const url = this.get('url');
@@ -9,5 +12,24 @@ module.exports = class extends Base {
     });
     const result = await spider.render();
     this.success(result);
+  }
+  async screenshotAction() {
+    const url = this.get('url');
+    const fullpage = this.get('fullpage');
+    try {
+      const spider = think.service('spider', {
+        url,
+      });
+      await spider.screenshot({
+        fullPage: fullpage == 1 ? true : false,
+      });
+    } catch (error) {
+      think.logger.error(error);
+      return this.fail('截图失败');
+    }
+    const filepath = path.join(think.ROOT_PATH, './runtime/screenshot.png');
+    this.download(filepath);
+    // 删除临时文件
+    unlink(filepath);
   }
 };

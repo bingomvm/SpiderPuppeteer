@@ -1,5 +1,6 @@
 const puppeteer = require('puppeteer');
 const { URL } = require('url');
+const path = require('path');
 module.exports = class extends think.Service {
   constructor({ cookies, host, url }) {
     super();
@@ -18,17 +19,23 @@ module.exports = class extends think.Service {
       think.log(`${name} times: ${Date.now() - now}ms`);
     };
   }
+  async initPage() {
+    if (this.page) return this.page;
+    const brower = await this.launch();
+    this.page = await brower.newPage();
+    return this.page;
+  }
   async launch() {
     if (this.brower) return this.brower;
     this.brower = await puppeteer.launch({
-      args: ['--no-sandbox'],
+      args: ['--no-sandbox', '--window-size=1920,1080'],
+      defaultViewport: { width: 1920, height: 1042 },
       headless: true,
     });
     return this.brower;
   }
   async render() {
-    const brower = await this.launch();
-    const page = await brower.newPage();
+    const page = await this.initPage();
     if (this.cookie) {
       const cookies = this.generatorCookie();
       cookies.length && (await page.setCookie(...cookies));
@@ -58,6 +65,17 @@ module.exports = class extends think.Service {
       think.logger.error(error);
       return [];
     }
+  }
+  async screenshot(params) {
+    const page = await this.initPage();
+    await page.goto(this.url);
+    think.logger.info('screen params:', params);
+    const buffer = await page.screenshot({
+      path: path.join(think.ROOT_PATH, './runtime/screenshot.png'),
+      ...params,
+    });
+    this.close();
+    return buffer;
   }
   close() {
     this.brower.close();

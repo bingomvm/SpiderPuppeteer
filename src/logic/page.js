@@ -7,4 +7,12 @@ module.exports = class extends think.Logic {
       },
     };
   }
+  screenshotAction() {
+    this.rule = {
+      url: {
+        required: true,
+        url: true,
+      },
+    };
+  }
 };
