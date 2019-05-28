@@ -87,7 +87,10 @@ echo $result;
 
 #### 截图功能
 
-使用方式：/api/page/screenshot?url=xxx&fullpage=1
+使用方式：/api/page/screenshot?url=xxx&fullpage=1&viewport=xxx,xxx
+
+fullpage:是否截图整个页面
+viewport:页面大小，不传默认为1920*1080
 
 ## 部署服务
 
