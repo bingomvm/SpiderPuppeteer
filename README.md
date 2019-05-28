@@ -16,12 +16,8 @@ SpiderPuppet是一个借助puppeteer的服务端渲染服务。
 2. npm start
 ```
 
-启动服务后可以通过http://127.0.0.1:8362访问服务的展示页面。在页面通过输入url来获取url渲染后的内容。
-
-目前服务支持两种数据方式
-
-1. /render?url=xxx 会直接返回渲染后的页面
-2. /api/page/render?url=xxx 会返回包含页面内容的JSON对象
+启动服务后可以通过http://127.0.0.1:8362访问服务的展示页面。在页面通过输入url来查看预渲染的内容
+或者可以直接访问/render?url=xxx
 
 ## 使用方式
 
@@ -85,13 +81,6 @@ echo $result;
 ?>
 ```
 
-#### 截图功能
-
-使用方式：/api/page/screenshot?url=xxx&fullpage=1&viewport=xxx,xxx
-
-fullpage:是否截图整个页面
-viewport:页面大小，不传默认为1920*1080
-
 ## 部署服务
 
 通过pm2来部署
@@ -116,6 +105,30 @@ pm2 startOrReload pm2.json
 3. 开发完成执行 npm run build 打包代码
 
 ```
+
+## API
+
+/api/page/render?url=xxx
+
+返回包含目标页面内容的JSON对象
+
++ `url`: 目标地址
++ `return`: {errno:0,errmsg:'', data: {content:'xxx'}}
+
+`/api/page/render?url=https://ppt.baomitu.com`
+
+
+
+/api/page/screenshot
+
+生成目标地址的截图并自动下载
+
++ `url`: 目标地址
++ `fullpage`: 是否截取整个可滚动的页面，默认为0
++ `viewport`: 设置页面的宽高（默认为1920*1080）
+
+`/api/page/screenshot?url=https://ppt.baomitu.com&fullpage=1&viewport=1920,1080`
+
 ## 使用docker
 
 构建镜像
@@ -132,3 +145,14 @@ docker run -t -p yourport:8362 IMAGEID
 ```
 
 >注意：如果修改了服务端代码需要重新构建镜像，修改了前端代码在构建镜像前需要执行```npm run build```打包前端代码
+
+
+目前该项目docker镜像已经上传到了docker hub，如需使用可以通过以下指令使用
+
+```
+// 下载镜像
+docker pull bingomvm/spider-puppeteer
+
+// 运行镜像
+docker run -t -p yourport:8360 bingomvm/spider-puppeteer
+```
