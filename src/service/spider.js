@@ -28,9 +28,9 @@ module.exports = class extends think.Service {
   }
   async launch() {
     if (this.brower) return this.brower;
-    const windowsize = this.options.windowsize;
+    const windowsize = this.options && this.options.windowsize;
     const wh = windowsize ? windowsize : '1920,1080';
-    const pagesize = this.options.pagesize;
+    const pagesize = this.options && this.options.pagesize;
     console.log(wh, pagesize);
     const [pageWidth, pageHeight] = pagesize
       ? pagesize.split(',').map(item => parseInt(item))
