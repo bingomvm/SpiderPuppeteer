@@ -154,5 +154,8 @@ docker run -t -p yourport:8362 IMAGEID
 docker pull bingomvm/spider-puppeteer
 
 // 运行镜像
-docker run -t -p yourport:8362 bingomvm/spider-puppeteer
+docker run -t -i -p yourport:8362 bingomvm/spider-puppeteer
+
+// 进入运行中的容器内部
+docker exec -it your_container_id /bin/bash
 ```
